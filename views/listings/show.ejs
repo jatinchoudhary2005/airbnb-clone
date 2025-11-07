@@ -1,0 +1,54 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="show-container">
+    <div class="listing-card">
+      <% if (listing.image && listing.image.url) { %>
+        <img src="<%= listing.image.url %>" alt="Listing Image" class="listing-img" />
+      <% } else { %>
+        <img src="https://via.placeholder.com/400x250?text=No+Image" alt="No Image" class="listing-img" />
+      <% } %>
+
+      <div class="listing-details">
+        <h2 class="listing-title"><%= listing.title %></h2>
+        <p class="listing-description"><%= listing.description %></p>
+        <p class="listing-price">₹ <%= listing.price.toLocaleString("en-IN") %></p>
+        <p class="listing-location"><strong>Location:</strong> <%= listing.location %></p>
+        <p class="listing-country"><strong>Country:</strong> <%= listing.country %></p>
+      </div>
+
+      <div class="listing-actions">
+        <a href="/listings/<%= listing.id %>/edit" class="edit-btn">✏ Edit this Listing</a>
+        <form method="POST" action="/listings/<%= listing.id %>?_method=DELETE" class="delete-form">
+          <button type="submit" class="delete-btn">🗑 Delete this Listing</button>
+        </form>
+      </div>
+    </div>
+  </div>
+<hr>
+
+<!-- Review Form -->
+<h3>Leave a Review</h3>
+<form action="/listings/<%= listing._id %>/reviews" method="POST"
+      style="background:#fff;
+      padding:15px;
+      border-radius:8px;
+      box-shadow:0 0 4px rgba(0,0,0,0.1);">
+  <label>Rating (1–5):</label>
+  <input type="range" name="review[rating]" min="1" max="5" required><br><br>
+
+  <label>Comment:</label><br>
+  <textarea name="review[comment]" rows="3" required style="width:100%;"></textarea><br><br>
+
+  <button type="submit"
+          style="background:#ff385c;
+          color:white;
+          padding:8px 16px;
+          border:none;
+          border-radius:6px;">
+    Submit
+  </button>
+</form>
+<h4> all review</h4>
+<p><%= listing.reviews %></p>
+</body>
