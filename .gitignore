@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# VSCode
+.vscode/
+
+# Uploads / temp (agar use kiya ho)
+uploads/
+tmp/
